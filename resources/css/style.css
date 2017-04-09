@@ -193,8 +193,26 @@ ul.todo li .buttons button svg {
   margin: -11px 0 0 -11px;
 }
 
+ul.todo#completed li .buttons button.complete svg {
+  border: 0;
+  background: #25b99a;
+}
+
+ul.todo#completed li .buttons button.complete svg .fill{
+  fill: #fff;
+}
+
+ul.todo li .buttons button.complete svg {
+  border-radius: 11px;
+  border: 1.5px solid #25b99a;
+}
+
 ul.todo li .buttons button.remove svg .fill {
   fill: #c0cecb;
+}
+
+ul.todo li .buttons button.complete svg .fill {
+  fill: #25b99a;
 }
 
 ul.todo li .buttons button.remove:hover svg .fill {
