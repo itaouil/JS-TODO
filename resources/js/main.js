@@ -10,9 +10,28 @@ document.getElementById('add').addEventListener('click', function() {
   var value = document.getElementById('item').value;
 
   // Add to todo list (if not empty)
-  if(value) addItemTodo(value);
+  if(value) {
+    addItemTodo(value);
+    var value = document.getElementById('item').value = '';
+  }
 
 });
+
+function removeItem() {
+  var item = this.parentNode.parentNode;
+  var parent = item.parentNode
+
+  parent.removeChild(item);
+}
+
+function completeItem() {
+  var item = this.parentNode.parentNode;
+  var parent = item.parentNode;
+  var id = parent.id;
+
+  var target = (id === 'todo') ? document.getElementById('completed'):document.getElementById('todo');
+  target.insertBefore(item, target.childNodes[0]);
+}
 
 // Adds item to todo list
 function addItemTodo(text) {
@@ -29,14 +48,20 @@ function addItemTodo(text) {
   remove.classList.add('remove');
   remove.innerHTML = removeSVG;
 
+  // Click event remove button
+  remove.addEventListener('click', removeItem);
+
   var complete = document.createElement('button');
   complete.classList.add('complete');
   complete.innerHTML = completeSVG;
+
+  // Click event complete button
+  complete.addEventListener('click', completeItem);
 
   buttons.appendChild(remove);
   buttons.appendChild(complete);
   item.appendChild(buttons);
 
-  list.appendChild(item);
+  list.insertBefore(item, list.childNodes[0]);
 
 }
